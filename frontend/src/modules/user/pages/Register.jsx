@@ -5,7 +5,8 @@ import {
   Heading,
   Text,
   TextField,
-  Button
+  Button,
+  Link
 } from "@radix-ui/themes";
 import { useRegister } from "../hooks/register-hook";
 
@@ -24,24 +25,22 @@ export default function Register() {
         style={{
           width: "100%",
           maxWidth: "420px",
-          borderRadius: "24px",
-          padding: "32px",
           boxShadow:
             "0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04)"
         }}
       >
         <form onSubmit={handleSubmit(registerSubmit)}>
-          <Flex direction="column" gap="5">
+          <Flex direction="column" gap="3">
             <Heading align="center" size="6" weight="bold">
               Create Your Account
             </Heading>
 
-            <Flex direction="column" gap="4">
+            <Flex direction="column" gap="3">
               <Box>
-                <Text as="label" size="3" weight="medium" mb="2" display="block">
+                <Text weight="medium">
                   Full Name
                 </Text>
-                <TextField.Root {...register("name")} placeholder="Enter your name" />
+                <TextField.Root {...register("name")} placeholder="Enter your name" type="text" />
                 {errors.name && (
                   <div className="mt-1 flex items-center gap-1">
                     <p className="text-xs text-red-600 font-medium tracking-tight">
@@ -52,7 +51,7 @@ export default function Register() {
               </Box>
 
               <Box>
-                <Text as="label" size="3" weight="medium" mb="2" display="block">
+                <Text weight="medium">
                   Email Address
                 </Text>
                 <TextField.Root {...register("email")} placeholder="you@example.com" type="email" />
@@ -66,7 +65,7 @@ export default function Register() {
               </Box>
 
               <Box>
-                <Text as="label" size="3" weight="medium" mb="2" display="block">
+                <Text weight="medium">
                   Password
                 </Text>
                 <TextField.Root {...register("password")} placeholder="Enter your password" type="password" />
@@ -77,6 +76,21 @@ export default function Register() {
                     </p>
                   </div>
                 )}
+              </Box>
+
+              <Box>
+                <Text size="1" color="gray">
+                  Already have an account?{" "}
+                  <Link
+                    href="/login"
+                    size="1"
+                    weight="medium"
+                    color="blue"
+                    style={{ textDecoration: "underline", cursor: "pointer" }}
+                  >
+                    Sign in
+                  </Link>
+                </Text>
               </Box>
             </Flex>
 
@@ -90,12 +104,12 @@ export default function Register() {
               </Button>
             </Flex>
 
-            <Text align="center" size="2" color="gray">
+            <Text align="center" size="1" color="gray">
               By continuing, you agree to our Terms &amp; Privacy Policy.
             </Text>
           </Flex>
         </form>
       </Card>
-    </Flex>
+    </Flex >
   );
 }

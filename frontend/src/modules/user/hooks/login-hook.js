@@ -1,0 +1,31 @@
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import loginSchema from "../validation/login-schema";
+import { loginApiCall } from "../api/user-api";
+
+export const useLogin = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    }
+  });
+  const loginSubmit = async (formData) => {
+    console.log("Login form Submit", formData);
+    try {
+      const response = await loginApiCall(formData);
+      console.log("Response is: ", response);
+
+      if (response.data.id) {
+        alert('Login Successful...');
+      } else {
+        alert("Api failed")
+      }
+    } catch (err) {
+      alert("Login failed")
+    }
+  }
+
+  return { loginSubmit, register, handleSubmit, errors };
+}
