@@ -1,16 +1,18 @@
 import { Box, Flex, Heading, TextField, Button, Text, Card } from '@radix-ui/themes'
 import React, { useRef } from 'react'
+import { shortenerApiCall } from '../api/url-api.js';
 
 const UrlShort = () => {
   const url = useRef();
 
-  const takeUrl = () => {
+  const takeUrl = async () => {
     const URL = url.current.value;
-    const response = shortenerApiCall({ bigUrl: URL });
-
     try {
-      if (response && response.shortUrl) {
-        console.log('small url', response);
+      const response = await shortenerApiCall({ bigUrl: URL });
+      console.log("res", response);
+
+      if (response && response.data.shortUrl) {
+        console.log('small url: ', response.data.shortUrl);
       } else {
         console.log('something went wrong.');
       }
