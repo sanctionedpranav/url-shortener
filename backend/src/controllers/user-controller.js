@@ -7,5 +7,8 @@ export const login = (req, res) => {
 }
 
 export const register = (req, res) => {
+  const userInfo = req.body;
+  console.log("userInfo", userInfo);
+
   res.send('<h1>Register</h1>');
 }
