@@ -19,7 +19,7 @@ export const useRegister = () => {
       console.log("Response is: ", response);
 
       if (response.data.id) {
-        alert(`Welcome ${response.data.name}`);
+        alert('Registration Successful...');
       } else {
         alert("Api failed")
       }
