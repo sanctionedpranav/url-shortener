@@ -9,7 +9,7 @@ export const urlShort = async (req, res) => {
     const doc = await addUrl({ email: 'pranav9728@gmail.com', shortId: num, bigUrl: bigUrl });
 
     if (doc && doc._id) {
-      res.json({ shortUrl: "http://localhost:8080/small/" + num });
+      res.json({ shortUrl: process.env.BASE_URL + "small/" + num });
     } else {
       res.json({ error: "Something went Wrong..." });
     }

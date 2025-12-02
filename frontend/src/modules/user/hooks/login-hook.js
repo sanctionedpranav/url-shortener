@@ -18,9 +18,10 @@ export const useLogin = () => {
       console.log("Response is: ", response);
 
       if (response.data.id) {
+        localStorage.email = response.data.email;
         alert('Login Successful...');
       } else {
-        alert("Api failed")
+        alert(response.data.message);
       }
     } catch (err) {
       alert("Login failed")
