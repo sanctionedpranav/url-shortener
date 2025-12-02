@@ -1,5 +1,6 @@
 import express from "express";
 import { userRoutes } from "./src/api/v1/routes/user-routes.js";
+import { shortRoutes } from "./src/api/v1/routes/url-short-routes.js";
 import { error404 } from "./src/utils/middlewares/404.js";
 import { connectToDB } from "./src/utils/db/connection.js";
 import dotenv from "dotenv";
@@ -11,6 +12,7 @@ app.use(cors());
 dotenv.config();
 app.use(express.json());
 app.use('/', userRoutes);
+app.use('/', shortRoutes);
 app.use(error404)
 
 const promise = connectToDB();

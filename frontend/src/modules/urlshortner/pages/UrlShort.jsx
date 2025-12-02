@@ -1,8 +1,9 @@
 import { Box, Flex, Heading, TextField, Button, Text, Card } from '@radix-ui/themes'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { shortenerApiCall } from '../api/url-api.js';
 
 const UrlShort = () => {
+  const [shortUrl, setShortUrl] = useState();
   const url = useRef();
 
   const takeUrl = async () => {
@@ -12,6 +13,7 @@ const UrlShort = () => {
       console.log("res", response);
 
       if (response && response.data.shortUrl) {
+        setShortUrl(response.data.shortUrl);
         console.log('small url: ', response.data.shortUrl);
       } else {
         console.log('something went wrong.');
@@ -61,7 +63,7 @@ const UrlShort = () => {
         </Flex>
       </Card>
 
-      <p></p>
+      <a href={shortUrl}>{shortUrl}</a>
     </Flex>
   )
 }
